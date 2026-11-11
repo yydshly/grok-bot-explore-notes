@@ -73,3 +73,33 @@ ul.days .tag{cursor:default;font-size:13px;padding:0 10px}
 .proj-group ul{list-style:none;padding:0;margin:0}
 .proj-group li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:8px}
 .proj-group .when{color:var(--soft);font-size:13px;margin-right:8px}
+
+/* 单页应用布局 */
+.app{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;max-width:1040px;margin:0 auto;padding:0 20px}
+.side{position:sticky;top:0;align-self:start;padding:28px 0;max-height:100vh;overflow-y:auto}
+.side h2{font-size:14px;color:var(--soft);margin:0 0 8px;font-weight:600}
+.side ul{list-style:none;padding:0;margin:0 0 20px}
+.side li a{display:block;padding:6px 10px;border-radius:8px;color:var(--ink);border-bottom:none;font-size:15px}
+.side li a:hover{background:var(--accent-soft);border-bottom:none}
+.side li a.on{background:var(--accent);color:#fff}
+.mobile-pick{display:none}
+.view{padding:28px 0 20px;min-height:60vh}
+.pmenu{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin:8px 0 0;display:flex;gap:8px;overflow-x:auto;border-bottom:1px solid var(--line);scrollbar-width:none}
+.pmenu::-webkit-scrollbar{display:none}
+.pmenu a{flex:none;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 14px;font-size:14px;color:var(--ink);white-space:nowrap}
+.pmenu a:hover{border-color:var(--accent);color:var(--accent)}
+.pmenu a.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.project{scroll-margin-top:64px}
+.loading{color:var(--soft)}
+.tabs{display:flex;gap:8px;margin:0 0 4px}
+@media (max-width:820px){
+  .app{grid-template-columns:1fr;gap:0}
+  .side{display:none}
+  .mobile-pick{display:flex;gap:8px;align-items:center;padding:12px 0 0;flex-wrap:wrap}
+  .mobile-pick select{font:inherit;font-size:15px;padding:6px 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);flex:1;min-width:0}
+  .mobile-pick a{font-size:14px;white-space:nowrap}
+  .view{padding-top:12px}
+}
+@media (max-width:820px){.app{grid-template-columns:minmax(0,1fr)}}
+main{min-width:0}
+td{white-space:normal;min-width:5.5em}

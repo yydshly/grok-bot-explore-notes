@@ -4,63 +4,146 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>探索笔记 · 海边城市</title>
-<meta name="description" content="独立开发者的持续探索沉淀：AI 能做出什么值得体验的作品。">
+<meta name="description" content="独立开发者的持续探索沉淀：AI 能做出什么值得体验的作品。按日期整理，一天里有多个项目拆解。">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-<header class="site"><div class="wrap">
-  <a class="brand" href="./">探索笔记</a>
-  <nav><a href="#days">日期</a><a href="projects.html">按项目</a><a href="#about">关于</a></nav>
+<header class="site"><div class="wrap" style="max-width:1040px">
+  <a class="brand" href="#/">探索笔记</a>
+  <nav><a href="#/">按日期</a><a href="#/projects">按项目</a><a href="#/about">关于</a></nav>
 </div></header>
 
-<main class="wrap">
-  <section class="hero">
-    <h1>独立开发者，探索 AI 能力能做出什么值得体验的作品。</h1>
-    <p>主线是浏览器里的方块海边城市「海边城市」。这里放我一路看到的、拆过的、试过的东西，边探索边整理。</p>
-  </section>
-
-  <section id="days">
-    <h2>按日期看</h2>
-    <p style="color:var(--soft);margin:0 0 8px;font-size:15px">每个日期是一个入口，点进去可以看到这一天里拆过的几个项目。</p>
-    <div class="tags" id="tagbar"><button class="tag on" data-tag="全部">全部</button></div>
-    <!-- 新的一天加在最上面；同一天有新项目，就改这一张卡片。详见 README -->
-    <ul class="days" id="daylist">
-      <li data-tags="账号拆解 AI视频 X 情绪 方法 海边城市 样图 画面">
-        <a class="date" href="days/2026-11-11.html">2026年11月11日</a>
-        <p class="sum">拆了刺激和治愈两种情绪账号，总结出先定情绪再做画面、以及让人想待一会儿的四个要点；顺带弄清了 HDR 和饱和度在 X 上的差别。</p>
-        <ul class="plist">
-          <li><a href="days/2026-11-11.html#hi-personality">拆解 @hi_personality</a></li>
-          <li><a href="days/2026-11-11.html#cozyycabin">拆解 @cozyycabin</a></li>
-          <li><a href="days/2026-11-11.html#emotion-first">情绪先行：两种模式和「想待一会儿」的四个要点</a></li>
-          <li><a href="days/2026-11-11.html#hdr-saturation-x">HDR、饱和度和 X 平台</a></li>
-        </ul>
-        <span class="tag">账号拆解</span> <span class="tag">情绪</span> <span class="tag">方法</span> <span class="tag">海边城市</span> <span class="tag">AI视频</span> <span class="tag">画面</span> <span class="tag">X</span> <span class="tag">样图</span>
-      </li>
+<div class="app">
+  <aside class="side" id="side">
+    <h2>日期</h2>
+    <ul id="datelist"></ul>
+    <h2>其他</h2>
+    <ul>
+      <li><a href="#/projects" data-route="projects">按项目看</a></li>
+      <li><a href="#/about" data-route="about">关于</a></li>
     </ul>
-  </section>
+  </aside>
 
-  <section id="about">
-    <h2>关于</h2>
-    <p>我是一个独立开发者，想知道 AI 现在能帮人做出哪些真正值得玩、值得看的东西。</p>
-    <p>我的主线作品是「海边城市」：一个在浏览器里就能打开的方块海边小城，可以开车、看海、等天黑下雨。这里的笔记大多围绕它展开：看别人为什么火，想想放进自己的世界里会是什么样。</p>
-    <p>笔记里引用的别人的帖子都附了原链接，数据是我查看时的数字，之后会变。标着「AI 生成的样图」的图片是我用 AI 做的方向参考，不是真实照片，也不是游戏里实际渲染出来的画面。</p>
-  </section>
-</main>
+  <main>
+    <div class="mobile-pick">
+      <select id="datesel" aria-label="选日期"></select>
+      <a href="#/projects">按项目</a>
+      <a href="#/about">关于</a>
+    </div>
+    <div class="view" id="view"><p class="loading">加载中…</p></div>
+  </main>
+</div>
 
 <footer><div class="wrap">持续更新中 · 用中文写给自己，也写给路过的你</div></footer>
 
 <script>
 (function(){
-  var items=[].slice.call(document.querySelectorAll('#daylist > li'));
-  var bar=document.getElementById('tagbar'), seen={};
-  items.forEach(function(li){(li.dataset.tags||'').split(/\s+/).forEach(function(t){
-    if(t&&!seen[t]){seen[t]=1;var b=document.createElement('button');b.className='tag';b.dataset.tag=t;b.textContent=t;bar.appendChild(b);}
-  });});
-  bar.addEventListener('click',function(e){
-    var t=e.target.dataset&&e.target.dataset.tag; if(!t) return;
-    [].forEach.call(bar.children,function(b){b.classList.toggle('on',b.dataset.tag===t);});
-    items.forEach(function(li){li.style.display=(t==='全部'||(' '+li.dataset.tags+' ').indexOf(' '+t+' ')>-1)?'':'none';});
-  });
+  var DATA=null, cache={}, current={date:null};
+  var view=document.getElementById('view'), datelist=document.getElementById('datelist'), datesel=document.getElementById('datesel');
+
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  function dayOf(d){for(var i=0;i<DATA.days.length;i++){if(DATA.days[i].date===d)return DATA.days[i];}return null;}
+
+  function parse(){
+    var h=decodeURIComponent(location.hash||'');
+    if(h==='#about') return {route:'about'};
+    if(h==='#projects') return {route:'projects'};
+    var m=h.match(/^#\/?([^/]*)\/?([^/]*)$/)||[];
+    var a=m[1]||'', b=m[2]||'';
+    if(a==='projects'||a==='about') return {route:a};
+    if(/^\d{4}-\d{2}-\d{2}$/.test(a)) return {route:'day',date:a,proj:b};
+    return {route:'day',date:DATA.days[0].date,proj:''};
+  }
+
+  function markNav(r){
+    [].forEach.call(document.querySelectorAll('.side a'),function(a){
+      var on=(r.route==='day'&&a.dataset.date===r.date)||(a.dataset.route&&a.dataset.route===r.route);
+      a.classList.toggle('on',!!on);
+    });
+    datesel.value=r.route==='day'?r.date:'';
+  }
+
+  function scrollToProj(id){
+    if(!id){window.scrollTo(0,0);return;}
+    var el=document.getElementById(id);
+    if(!el){window.scrollTo(0,0);return;}
+    el.scrollIntoView({block:'start'}); setActive(id);
+    setTimeout(function(){var e=document.getElementById(id);if(e&&Math.abs(e.getBoundingClientRect().top-64)>40)e.scrollIntoView({block:'start'});},400);
+  }
+  function setActive(id){
+    [].forEach.call(document.querySelectorAll('.pmenu a'),function(a){
+      var on=a.dataset.id===id; a.classList.toggle('on',on);
+      if(on){var m=a.parentNode; if(a.offsetLeft<m.scrollLeft||a.offsetLeft+a.offsetWidth>m.scrollLeft+m.clientWidth) m.scrollLeft=a.offsetLeft-12;}
+    });
+  }
+
+  function renderDay(r){
+    var d=dayOf(r.date);
+    if(!d){view.innerHTML='<h1>没有找到这一天</h1><p><a href="#/">回到最新的一天</a></p>';current.date=null;return;}
+    if(current.date===r.date&&document.getElementById('daybody')){scrollToProj(r.proj);return;}
+    current.date=r.date;
+    var menu=d.projects.map(function(p){return '<a href="#/'+d.date+'/'+p.id+'" data-id="'+p.id+'">'+esc(p.title)+'</a>';}).join('');
+    view.innerHTML='<article class="day"><h1>'+esc(d.title)+'</h1><div class="lead">'+esc(d.summary)+'</div>'+
+      '<nav class="pmenu" aria-label="这一天的项目">'+menu+'</nav><div id="daybody"><p class="loading">加载中…</p></div></article>';
+    document.title=d.title+' · 探索笔记';
+    var p=cache[d.date]?Promise.resolve(cache[d.date]):fetch('content/'+d.date+'.html').then(function(x){if(!x.ok)throw 0;return x.text();});
+    p.then(function(html){
+      cache[d.date]=html;
+      if(current.date!==d.date) return;
+      document.getElementById('daybody').innerHTML=html;
+      scrollToProj(r.proj);
+    }).catch(function(){document.getElementById('daybody').innerHTML='<p>这一天的内容没加载出来，刷新一下试试。</p>';});
+  }
+
+  function renderProjects(){
+    current.date=null; document.title='按项目看 · 探索笔记';
+    var groups={}, order=[];
+    DATA.days.forEach(function(d){d.projects.forEach(function(p){(p.tags||['其他']).forEach(function(t){
+      if(!groups[t]){groups[t]=[];order.push(t);} groups[t].push({d:d,p:p});
+    });});});
+    var html='<h1>按项目看</h1><p style="color:var(--soft)">同一类内容可能出现在不同的日期里。点进去会直接跳到那一天对应的项目。</p>';
+    html+='<div class="tags" id="tagbar"><button class="tag on" data-tag="">全部</button>'+order.map(function(t){return '<button class="tag" data-tag="'+esc(t)+'">'+esc(t)+'</button>';}).join('')+'</div>';
+    html+=order.map(function(t){return '<div class="proj-group" data-tag="'+esc(t)+'"><h2>'+esc(t)+'</h2><ul>'+groups[t].map(function(x){
+      return '<li><span class="when">'+x.d.date+'</span><a href="#/'+x.d.date+'/'+x.p.id+'">'+esc(x.p.title)+'</a></li>';}).join('')+'</ul></div>';}).join('');
+    view.innerHTML=html; window.scrollTo(0,0);
+    document.getElementById('tagbar').addEventListener('click',function(e){
+      var t=e.target.dataset?e.target.dataset.tag:undefined; if(t===undefined)return;
+      [].forEach.call(this.children,function(b){b.classList.toggle('on',b.dataset.tag===t);});
+      [].forEach.call(view.querySelectorAll('.proj-group'),function(g){g.style.display=(!t||g.dataset.tag===t)?'':'none';});
+    });
+  }
+
+  function renderAbout(){
+    current.date=null; document.title='关于 · 探索笔记';
+    view.innerHTML='<h1>关于</h1>'+
+      '<p>我是一个独立开发者，想知道 AI 现在能帮人做出哪些真正值得玩、值得看的东西。</p>'+
+      '<p>我的主线作品是「海边城市」：一个在浏览器里就能打开的方块海边小城，可以开车、看海、等天黑下雨。这里的笔记大多围绕它展开：看别人为什么火，想想放进自己的世界里会是什么样。</p>'+
+      '<p>怎么看：左边（手机上是顶部的下拉框）选一个日期，右边就换成那一天的内容；每一天上面有一排项目按钮，点一下跳到那个项目。也可以点「按项目看」，按类别找。</p>'+
+      '<p>笔记里引用的别人的帖子都附了原链接，只用文字说明，不转载别人的图。数据是我查看时的数字，之后会变。标着「AI 生成的样图」的图片是用 AI 做的方向参考，不是真实照片，也不是游戏里实际渲染出来的画面。</p>';
+    window.scrollTo(0,0);
+  }
+
+  function route(){
+    var r=parse(); markNav(r);
+    if(r.route==='projects') renderProjects();
+    else if(r.route==='about') renderAbout();
+    else renderDay(r);
+  }
+
+  window.addEventListener('scroll',function(){
+    var secs=document.querySelectorAll('#daybody section.project'); if(!secs.length)return;
+    var id=''; [].forEach.call(secs,function(s){if(s.getBoundingClientRect().top<120) id=s.id;});
+    setActive(id);
+  },{passive:true});
+
+  fetch('data/days.json').then(function(x){return x.json();}).then(function(j){
+    DATA=j; DATA.days.sort(function(a,b){return a.date<b.date?1:-1;});
+    datelist.innerHTML=DATA.days.map(function(d){return '<li><a href="#/'+d.date+'" data-date="'+d.date+'">'+esc(d.title)+'<br><small style="opacity:.75">'+d.projects.length+' 个项目</small></a></li>';}).join('');
+    datesel.innerHTML='<option value="" disabled>选日期</option>'+DATA.days.map(function(d){return '<option value="'+d.date+'">'+esc(d.title)+'（'+d.projects.length+' 个项目）</option>';}).join('');
+    datesel.addEventListener('change',function(){location.hash='#/'+this.value;});
+    window.addEventListener('hashchange',route);
+    route();
+  }).catch(function(){view.innerHTML='<p>目录没加载出来，刷新一下试试。</p>';});
 })();
 </script>
 </body>
