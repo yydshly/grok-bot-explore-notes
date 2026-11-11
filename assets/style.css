@@ -163,3 +163,6 @@ details[open]>summary{border-bottom:1px solid var(--line)}
 .daytoc li{margin:3px 0}
 .daytoc a{color:var(--ink)}
 .daytoc a:hover{color:var(--accent)}
+figure.vid video{width:100%;height:auto;max-height:80vh;border-radius:12px;display:block;background:#111}
+figure.vid.wide{max-width:560px;margin:14px auto}
+.grid2 figure.vid video{max-height:70vh}

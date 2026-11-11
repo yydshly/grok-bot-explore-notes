@@ -257,8 +257,17 @@
 <div class="block b-what"><h3>这是什么</h3><p>用 AI 做了两组落日对比图：普通、只加饱和度、HDR、HDR + 饱和度、拉过头，看清楚"浓"的颜色到底怎么来。</p><p>同时把照 @hi_personality 做 7 秒追车视频的扩展方案写全了：代码怎么做、分几步做、一周发什么、能做成什么产品。也查了 X 怎么处理 HDR。</p></div>
 <div class="block b-value"><h3>对我的价值</h3><ul><li><b>调色顺序定了</b>：先 HDR 再加饱和度，海边城市的"黄昏模式"照这个顺序调，不用瞎试。</li><li><b>发 X 不踩坑</b>：X 会把 HDR 视频转成 SDR，常常发灰，所以自己先调好颜色、导出 SDR 再传。</li><li><b>扩展方案拿来就能开工</b>：每一步都对到了具体要做的功能。</li></ul></div>
 <div class="block b-ext"><h3>可扩展方向</h3><ol class="ext"><li><span class="first">先做</span>第一版：追车镜头 + 海岸公路 + 黄昏模式 + 录 7 秒按钮（预估 2 到 3 天）</li><li>第二版：卷曲世界、漩涡天空、巨大月亮、速度线（预估约 1 周）</li><li>第三版：分享链接还原场景、选自己的海岸、付费导出高清（预估约 2 周）</li><li>之后：撞碎方块楼、下雨的海面、昼夜切换，做成自己的系列</li></ol></div>
-<div class="block b-show"><h3>关键展示</h3><div class="grid3"><figure><img src="assets/img/hdr-1-none.jpg" width="1200" height="675" alt="普通图" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>普通：太阳周围一片白</figcaption></figure><figure><img src="assets/img/hdr-2b-saturated-only.jpg" width="1200" height="675" alt="只加饱和度" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>只加饱和度：更橙了，白的还是白</figcaption></figure><figure><img src="assets/img/hdr-3-hdr-saturated.jpg" width="1200" height="675" alt="HDR 加饱和度" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>先 HDR 再加饱和度：有细节又浓</figcaption></figure></div></div>
+<div class="block b-show"><h3>关键展示</h3><div class="grid3"><figure><img src="assets/img/hdr-1-none.jpg" width="1200" height="675" alt="普通图" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>普通：太阳周围一片白</figcaption></figure><figure><img src="assets/img/hdr-2b-saturated-only.jpg" width="1200" height="675" alt="只加饱和度" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>只加饱和度：更橙了，白的还是白</figcaption></figure><figure><img src="assets/img/hdr-3-hdr-saturated.jpg" width="1200" height="675" alt="HDR 加饱和度" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>先 HDR 再加饱和度：有细节又浓</figcaption></figure></div><figure class="vid wide"><video controls playsinline muted preload="metadata" poster="assets/video/compare-sdr-hdr-poster.jpg" width="1080" height="960"><source src="assets/video/compare-sdr-hdr.mp4" type="video/mp4"></video><figcaption><span class="ai">AI 生成的样片</span>视频对比：同一段霓虹灯下的人脸，左边 SDR（普通视频），右边 HDR。这个对比视频本身是普通 SDR 格式，所以右边显得更暗、更灰——HDR 视频没在支持 HDR 的屏幕上播放、或者被平台转成 SDR 时，常常就是这个样子。</figcaption></figure></div>
 <div class="details-wrap"><h3 class="dt">详细拆解 <small>点开看</small></h3>
+<details><summary>HDR / SDR 视频样片（单独看）</summary><div class="dbody">
+<p>同一段 6 秒的视频，分别导出成 SDR 和 HDR 两个版本。</p>
+<div class="grid2">
+<figure class="vid"><video controls playsinline muted preload="metadata" poster="assets/video/sdr-poster.jpg" width="720" height="1280"><source src="assets/video/sdr.mp4" type="video/mp4"></video><figcaption><span class="ai">AI 生成的样片</span>SDR 版：普通视频，在任何屏幕上看到的颜色都差不多。</figcaption></figure>
+<figure class="vid"><video controls playsinline muted preload="metadata" poster="assets/video/hdr-poster.jpg" width="720" height="1280"><source src="assets/video/hdr-hevc.mp4" type='video/mp4; codecs="hvc1"'><source src="assets/video/hdr-sdr-fallback.mp4" type="video/mp4"></video><figcaption><span class="ai">AI 生成的样片</span>HDR 版（10 位 HEVC，带 HDR 标记）。浏览器不支持这种格式时，会自动换成一个转成普通 SDR 的版本播放。</figcaption></figure>
+</div>
+<p class="note">HDR 只有在<b>支持 HDR 的屏幕 + 支持的浏览器</b>上才会"亮起来"（比如较新的 iPhone、Mac 上的 Safari）。在普通屏幕上看，HDR 版不会比 SDR 更好，甚至可能更暗、更灰。网页上这两段视频都去掉了声音。</p>
+</div></details>
+
 <details><summary>先说清楚两个词</summary><div class="dbody"><ul>
 <li><b>HDR（高动态范围）：</b>同时找回高光和阴影里的细节。天空不再一片白，暗处也不再一片黑。</li>
 <li><b>饱和度：</b>只改变颜色的浓淡。已经丢掉的细节，它找不回来。</li>
