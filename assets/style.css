@@ -42,3 +42,34 @@ figcaption{font-size:14px;color:var(--soft);margin-top:6px}
 @media (max-width:560px){.grid2,.grid3{grid-template-columns:1fr}.hero h1{font-size:25px}body{font-size:16px}}
 footer{border-top:1px solid var(--line);color:var(--soft);font-size:14px;padding:24px 0 40px;margin-top:40px}
 blockquote{margin:12px 0;padding:4px 16px;border-left:3px solid var(--line);color:var(--soft)}
+
+/* 日期入口、一天一页 */
+html{scroll-behavior:smooth}
+.crumb{color:var(--soft);font-size:14px;margin:28px 0 8px}
+.crumb a{color:var(--soft)}
+article.day{padding-top:0}
+article.day>h1{font-size:27px;line-height:1.4;margin:0 0 12px}
+.toc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 20px 18px;margin:24px 0 8px}
+.toc h2{font-size:16px;margin:0 0 8px}
+.toc ol{margin:0;padding-left:22px}
+.toc li{margin:4px 0}
+.project{border-top:1px solid var(--line);padding:8px 0 12px;margin-top:48px}
+.project>h2{font-size:24px;line-height:1.4;margin:20px 0 6px;scroll-margin-top:16px}
+.project .to-toc{font-size:13px;color:var(--soft);display:inline-block;margin-top:12px;border-bottom:none}
+.project .to-toc:hover{color:var(--accent)}
+ul.days{list-style:none;padding:0;margin:0}
+ul.days>li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+ul.days .date{display:block;font-size:20px;font-weight:700;color:var(--ink);margin-bottom:6px;border-bottom:none}
+ul.days .date:hover{color:var(--accent);border-bottom:none}
+ul.days .sum{color:var(--soft);font-size:15px;margin:0 0 10px}
+ul.days .plist{list-style:none;padding:0;margin:0 0 10px}
+ul.days .plist li{background:none;border:0;border-radius:0;padding:0;margin:0}
+ul.days .plist a{display:inline-block;color:var(--ink);padding:3px 0;border-bottom:none}
+ul.days .plist a:hover{color:var(--accent);border-bottom:none}
+ul.days .plist a::before{content:"→ ";color:var(--accent)}
+ul.days .tag{cursor:default;font-size:13px;padding:0 10px}
+.proj-group{margin:28px 0}
+.proj-group h2{margin-bottom:10px}
+.proj-group ul{list-style:none;padding:0;margin:0}
+.proj-group li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:8px}
+.proj-group .when{color:var(--soft);font-size:13px;margin-right:8px}
