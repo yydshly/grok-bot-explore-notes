@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>探索笔记 · 海边城市</title>
+<meta name="description" content="独立开发者的持续探索沉淀：AI 能做出什么值得体验的作品。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="./">探索笔记</a>
+  <nav><a href="#notes">笔记</a><a href="#about">关于</a></nav>
+</div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>独立开发者，探索 AI 能力能做出什么值得体验的作品。</h1>
+    <p>主线是浏览器里的方块海边城市「海边城市」。这里放我一路看到的、拆过的、试过的东西，边探索边整理。</p>
+  </section>
+
+  <section id="notes">
+    <h2>笔记</h2>
+    <div class="tags" id="tagbar"><button class="tag on" data-tag="全部">全部</button></div>
+    <!-- 新笔记加在最上面，复制一个 <li> 改内容即可，详见 README -->
+    <ul class="notes" id="notelist">
+      <li data-tags="情绪 方法 海边城市 样图">
+        <span class="date">2026-11-11</span>
+        <a class="title" href="notes/2026-11-11-emotion-first.html">情绪先行：两种模式和「想待一会儿」的四个要点</a>
+        <p class="sum">先定情绪再做画面。刺激模式和治愈模式，以及怎么让人想在画面里多待一会儿。</p>
+        <span class="tag">情绪</span> <span class="tag">方法</span> <span class="tag">海边城市</span> <span class="tag">样图</span>
+      </li>
+      <li data-tags="账号拆解 情绪 X">
+        <span class="date">2026-11-11</span>
+        <a class="title" href="notes/2026-11-11-cozyycabin.html">拆解 @cozyycabin：治愈情绪图为什么让人想停留</a>
+        <p class="sum">几乎不写字，每天发猫、雨、小屋、月亮。真正火的是「刚刚好的奇迹」那一下。</p>
+        <span class="tag">账号拆解</span> <span class="tag">情绪</span> <span class="tag">X</span>
+      </li>
+      <li data-tags="账号拆解 AI视频 X">
+        <span class="date">2026-11-11</span>
+        <a class="title" href="notes/2026-11-11-hi-personality.html">拆解 @hi_personality：7 秒追车奇幻视频为什么能爆</a>
+        <p class="sum">骑车往前冲、镜头跟在背后、不可能的世界、颜色拉满。25 条帖子的真实数据。</p>
+        <span class="tag">账号拆解</span> <span class="tag">AI视频</span> <span class="tag">X</span>
+      </li>
+      <li data-tags="画面 X 样图">
+        <span class="date">2026-11-11</span>
+        <a class="title" href="notes/2026-11-11-hdr-saturation-x.html">HDR、饱和度和 X 平台</a>
+        <p class="sum">HDR 和饱和度不是一回事。发到 X 上会怎样，视频为什么会发灰。</p>
+        <span class="tag">画面</span> <span class="tag">X</span> <span class="tag">样图</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="about">
+    <h2>关于</h2>
+    <p>我是一个独立开发者，想知道 AI 现在能帮人做出哪些真正值得玩、值得看的东西。</p>
+    <p>我的主线作品是「海边城市」：一个在浏览器里就能打开的方块海边小城，可以开车、看海、等天黑下雨。这里的笔记大多围绕它展开：看别人为什么火，想想放进自己的世界里会是什么样。</p>
+    <p>笔记里引用的别人的帖子都附了原链接，数据是我查看时的数字，之后会变。标着「AI 生成的样图」的图片是我用 AI 做的方向参考，不是真实照片，也不是游戏里实际渲染出来的画面。</p>
+  </section>
+</main>
+
+<footer><div class="wrap">持续更新中 · 用中文写给自己，也写给路过的你</div></footer>
+
+<script>
+(function(){
+  var items=[].slice.call(document.querySelectorAll('#notelist li'));
+  var bar=document.getElementById('tagbar'), seen={};
+  items.forEach(function(li){(li.dataset.tags||'').split(/\s+/).forEach(function(t){
+    if(t&&!seen[t]){seen[t]=1;var b=document.createElement('button');b.className='tag';b.dataset.tag=t;b.textContent=t;bar.appendChild(b);}
+  });});
+  bar.addEventListener('click',function(e){
+    var t=e.target.dataset&&e.target.dataset.tag; if(!t) return;
+    [].forEach.call(bar.children,function(b){b.classList.toggle('on',b.dataset.tag===t);});
+    items.forEach(function(li){li.style.display=(t==='全部'||(' '+li.dataset.tags+' ').indexOf(' '+t+' ')>-1)?'':'none';});
+  });
+})();
+</script>
+</body>
+</html>
