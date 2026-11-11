@@ -3,12 +3,56 @@
     {
       "date": "2026-11-11",
       "title": "2026年11月11日",
-      "summary": "拆了刺激（@hi_personality）和治愈（@cozyycabin）两种情绪账号，总结出先定情绪再做画面、让人想待一会儿的四个要点；做了 HDR 和高饱和度的对比图，并写好海边城市的骑行扩展方案。",
+      "summary": "以主线「海边城市」为中心：写下整体规划；拆了刺激（@hi_personality）和治愈（@cozyycabin）两种情绪账号，总结出让人想待一会儿的四个要点；做了 HDR 和高饱和度的对比图，并写好骑行扩展方案。",
       "projects": [
-        {"id": "hi-personality", "title": "拆解 @hi_personality：7 秒追车奇幻视频", "tags": ["账号拆解", "AI视频", "X"]},
-        {"id": "cozyycabin", "title": "拆解 @cozyycabin：治愈情绪图", "tags": ["账号拆解", "情绪", "X"]},
-        {"id": "emotion-first", "title": "情绪先行：样图和「想待一会儿」的四个要点", "tags": ["情绪", "方法", "海边城市", "样图"]},
-        {"id": "hdr-saturation-x", "title": "高饱和度对比图 + 骑行扩展方案", "tags": ["画面", "样图", "海边城市", "方案", "X"]}
+        {
+          "id": "coastal-city",
+          "title": "1. 海边城市 整体规划",
+          "tags": [
+            "海边城市",
+            "主线",
+            "规划"
+          ]
+        },
+        {
+          "id": "hi-personality",
+          "title": "2. 拆解 @hi_personality：7 秒追车奇幻视频",
+          "tags": [
+            "账号拆解",
+            "AI视频",
+            "X"
+          ]
+        },
+        {
+          "id": "cozyycabin",
+          "title": "3. 拆解 @cozyycabin：治愈情绪图",
+          "tags": [
+            "账号拆解",
+            "情绪",
+            "X"
+          ]
+        },
+        {
+          "id": "emotion-first",
+          "title": "4. 情绪先行：样图和「想待一会儿」的四个要点",
+          "tags": [
+            "情绪",
+            "方法",
+            "海边城市",
+            "样图"
+          ]
+        },
+        {
+          "id": "hdr-saturation-x",
+          "title": "5. 高饱和度对比图 + 骑行扩展方案",
+          "tags": [
+            "画面",
+            "样图",
+            "海边城市",
+            "方案",
+            "X"
+          ]
+        }
       ]
     }
   ]
