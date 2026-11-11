@@ -83,7 +83,7 @@
     if(current.date===r.date&&document.getElementById('daybody')){scrollToProj(r.proj);return;}
     current.date=r.date;
     var menu=d.projects.map(function(p){return '<a href="#/'+d.date+'/'+p.id+'" data-id="'+p.id+'">'+esc(p.title)+'</a>';}).join('');
-    view.innerHTML='<article class="day"><h1>'+esc(d.title)+'</h1><div class="lead">'+esc(d.summary)+'</div>'+
+    view.innerHTML='<article class="day"><h1>'+esc(d.title)+'</h1>'+
       '<nav class="pmenu" aria-label="这一天的项目">'+menu+'</nav><div id="daybody"><p class="loading">加载中…</p></div></article>';
     document.title=d.title+' · 探索笔记';
     var p=cache[d.date]?Promise.resolve(cache[d.date]):fetch('content/'+d.date+'.html').then(function(x){if(!x.ok)throw 0;return x.text();});

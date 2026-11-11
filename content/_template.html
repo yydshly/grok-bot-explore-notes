@@ -1,11 +1,28 @@
-<!-- 新的一天：复制本文件为 content/YYYY-MM-DD.html，只写 <section>，不要写 <html>/<head>/<body>。
-     图片路径从网站根目录写起：assets/img/xxx.jpg
-     站内跳转写成 #/YYYY-MM-DD/项目id -->
+<!-- 新的一天：复制本文件为 content/YYYY-MM-DD.html，只写下面这些，不要写 <html>/<head>/<body>。
+     结构固定：最上面是「今天一句话 + 项目卡片」，下面每个项目按 一句话结论 → 这是什么 → 对我的价值 → 可扩展方向 → 关键展示 → 详细拆解（折叠）。
+     图片路径从网站根目录写起：assets/img/xxx.jpg；站内跳转写成 #/YYYY-MM-DD/项目id -->
+
+<div class="overview">
+  <div class="today"><span class="label">今天一句话</span>这一天做了什么，一句话说完。</div>
+  <div class="pcards">
+    <a class="pcard" href="#/YYYY-MM-DD/project-slug"><img src="assets/img/your-image.jpg" alt="" loading="lazy"><span class="pc-t">项目标题</span><span class="pc-w">一句话：这是什么</span><span class="pc-v">对我：一句话价值</span></a>
+  </div>
+  <p class="hint">下面每个项目都是：一句话结论 → 这是什么 → 对我的价值 → 可扩展方向 → 关键展示；更细的内容收在"详细拆解"里，点开再看。</p>
+</div>
+
 <section class="project" id="project-slug">
 <h2>项目标题</h2>
 <div class="meta">标签1 · 标签2</div>
-<div class="lead">一句话：<b>这篇最重要的结论。</b></div>
-<h3>小标题</h3>
-<p>正文。引用别人的帖子请附原链接和查看日期，不要转载别人的图片或视频。</p>
-<figure><img src="assets/img/your-image.jpg" alt="图片说明" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>图片说明</figcaption></figure>
+<div class="conclusion"><span class="label">一句话结论</span><b>最重要的结论。</b></div>
+<div class="block b-what"><h3>这是什么</h3><p>两三句大白话说清楚。</p></div>
+<div class="block b-value"><h3>对我的价值</h3><ul><li>最多 3 条，具体到海边城市 / X 涨粉 / 独立开发。</li></ul></div>
+<div class="block b-ext"><h3>可扩展方向</h3><ol class="ext"><li><span class="first">先做</span>最优先的一条</li><li>第二条</li><li>第三条</li></ol></div>
+<div class="block b-show"><h3>关键展示</h3>
+  <div class="grid2 big">
+    <figure><img src="assets/img/your-image.jpg" alt="图片说明" loading="lazy"><figcaption><span class="ai">AI 生成的样图</span>图片说明</figcaption></figure>
+  </div>
+</div>
+<div class="details-wrap"><h3 class="dt">详细拆解 <small>点开看</small></h3>
+<details><summary>小标题</summary><div class="dbody"><p>完整的表格、全部图片、数据、没核实的地方……引用别人的帖子请附原链接和查看日期，不要转载别人的图片或视频。</p></div></details>
+</div>
 </section>

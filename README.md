@@ -33,7 +33,15 @@ days/*.html projects.html notes/*.html   旧地址，自动跳到 index.html 里
 
 ## 怎么加新的一天（加一个文件 + 一条目录）
 
-1. 复制模板：`cp content/_template.html content/2026-11-12.html`，每个项目写一个 `<section class="project" id="英文短名">`。
+1. 复制模板：`cp content/_template.html content/2026-11-12.html`，按模板的固定结构写（先总结、再细节）：
+   - 最上面：「今天一句话」+ 每个项目一张卡片（一句话是什么、一张图、一句对我的价值），点卡片跳到项目。
+   - 每个项目 `<section class="project" id="英文短名">` 里按顺序写：
+     1. 一句话结论（`.conclusion`，最显眼）
+     2. 这是什么（2–3 句大白话）
+     3. 对我的价值（最多 3 条，具体到海边城市、X 涨粉、独立开发）
+     4. 可扩展方向（3–4 条，按优先级排，第一条标「先做」）
+     5. 关键展示（只放 1–3 张最能说明问题的图，放大）
+     6. 详细拆解（其余全部内容放进 `<details>`，默认收起：完整图组、表格、方案、没核实的地方）
    - 图片路径从根目录写：`assets/img/xxx.jpg`；AI 做的图在说明里加 `<span class="ai">AI 生成的样图</span>`。
    - 站内跳转写成 `#/2026-11-12/英文短名`。
 2. 打开 `data/days.json`，在 `days` 里加一条（顺序随意，页面会自动把最新的排在最上面）：
