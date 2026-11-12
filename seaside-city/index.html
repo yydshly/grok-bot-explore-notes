@@ -6,8 +6,8 @@
     <meta name="theme-color" content="#14110e" />
     <title>海边城市 · Seaside City</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <script type="module" crossorigin src="./assets/index-DI-WroQz.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-B1oVSSb9.css">
+    <script type="module" crossorigin src="./assets/index-BO11cWE7.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BJ2No7Ix.css">
   </head>
   <body>
     <canvas id="view"></canvas>
@@ -19,6 +19,10 @@
         <p class="place" id="place">鼓浪屿东南岸 · Xiamen</p>
       </header>
       <div class="bottom">
+        <div class="actions">
+          <button id="tour" type="button">开始导览</button>
+          <button id="sound" type="button" aria-pressed="false">声音</button>
+        </div>
         <label class="time">
           <span id="period">傍晚</span>
           <input id="time" type="range" min="0" max="24" step="0.01" value="16.4" aria-label="时刻 time of day" />
@@ -30,6 +34,18 @@
         </p>
       </div>
     </div>
+    <div id="markers"></div>
+    <section id="card" hidden>
+      <p id="card-index">1 / 5</p>
+      <h2 id="card-name"></h2>
+      <p id="card-zh"></p>
+      <p id="card-en"></p>
+      <div class="card-nav">
+        <button id="prev" type="button">上一处</button>
+        <button id="next" type="button">下一处</button>
+        <button id="exit" type="button">结束</button>
+      </div>
+    </section>
     <div id="status" role="status">正在把海岸收成方块…</div>
   </body>
 </html>
