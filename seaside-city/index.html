@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#14110e" />
+    <title>海边城市 · Seaside City</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <script type="module" crossorigin src="./assets/index-DI-WroQz.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B1oVSSb9.css">
+  </head>
+  <body>
+    <canvas id="view"></canvas>
+    <div id="vignette"></div>
+    <div id="hud">
+      <header>
+        <h1>海边城市</h1>
+        <p class="en">Seaside City</p>
+        <p class="place" id="place">鼓浪屿东南岸 · Xiamen</p>
+      </header>
+      <div class="bottom">
+        <label class="time">
+          <span id="period">傍晚</span>
+          <input id="time" type="range" min="0" max="24" step="0.01" value="16.4" aria-label="时刻 time of day" />
+          <span id="clock">16:24</span>
+        </label>
+        <p class="credit">
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>
+          <span> · ODbL · Terrain: AWS Terrarium</span>
+        </p>
+      </div>
+    </div>
+    <div id="status" role="status">正在把海岸收成方块…</div>
+  </body>
+</html>
